@@ -104,7 +104,7 @@ function Get-GitStatus($gitDir = (Get-GitDirectory)) {
         if($settings.EnableFileStatus -and !$(InDisabledRepository)) {
             dbg 'Getting status' $sw
             $Global:GitRepo = $repo = New-Object LibGit2Sharp.Repository $gitDir
-            $status = $repo.Index.RetrieveStatus()
+            $status = $repo.RetrieveStatus($null)
             $filesAdded = $status.Untracked
             $filesModified = $status.Modified
             $filesDeleted = $status.Missing
